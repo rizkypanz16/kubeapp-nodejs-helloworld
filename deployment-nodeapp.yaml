@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-web1
+  namespace: belajar
+  labels:
+    app: node
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      name: node-web1
+      labels:
+        app: node
+    spec:
+      containers:
+        - name: node-web1
+          image: rizkypanz/hellonodejs:stable
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-web1-service
+  namespace: belajar
+spec:
+  type: LoadBalancer
+  selector:
+    app: node
+  ports:
+    - port: 3000
+      targetPort: 3000
