@@ -9,7 +9,9 @@ build:
         GIT_STRATEGY: clone
     script:
         - echo "Build nodeapp to docker image"
-        - docker login -u rizkypanz -p Rizkypanji16
+        # Replace <DOCKER_REGISTRY_USER> command with DockerHub Username
+        # Replace <DOCKER_REGISTRY_PASSWORD> command with DockerHub Password
+        - docker login -u <DOCKER_REGISTRY_USER> -p <DOCKER_REGISTRY_PASSWORD>
         - docker build -f Dockerfile -t rizkypanz/hellonodejs:stable .
         - docker push rizkypanz/hellonodejs:stable
     only:
